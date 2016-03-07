@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="eltr">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,7 +13,7 @@
 </head>
 <body>
     <div ui-view="navbar"></div>
-    <div ui-view="content"></div>
+    <div class="text-center" ui-view="content"></div>
 
     <!--bower:js-->
     <script src="bower_components/angular/angular.js"></script>
@@ -21,8 +21,13 @@
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!--endbower-->
     <!--inject:js-->
+    <script src="scripts/app/app.js"></script>
+    <script src="scripts/components/navbar/navbar.controller.js"></script>
+    <script src="scripts/app/main/main.js"></script>
+    <script src="scripts/app/main/main.controller.js"></script>
     <!--endinject-->
 </body>
 </html>

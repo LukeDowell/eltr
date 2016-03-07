@@ -12,7 +12,7 @@ angular.module('eltr', ['ngAria', 'ui.router', 'ngMessages', 'ngMaterial'])
                 'abstract': true,
                 'views': {
                     'navbar@': {
-                        templateUrl: './scripts/components/navbar/navbar.html',
+                        templateUrl: 'scripts/components/navbar/navbar.html',
                         controller: 'NavbarController'
                     }
                 }
