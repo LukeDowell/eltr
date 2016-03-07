@@ -1,7 +1,6 @@
 /**
  * Created by Luke on 2/23/2016.
  */
-'use strict';
 
 var gulp = require('gulp');
 var inject = require('gulp-inject');

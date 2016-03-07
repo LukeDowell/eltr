@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var debug = require('debug')('ELTR:app-js');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -8,6 +9,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 
 var app = express();
+
+var server = require('http').Server(app); // Setup socketio
+var io = require('socket.io')(server);
 
 
 // uncomment after placing your favicon in /public
@@ -49,6 +53,10 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+io.on('connection', function(socket) {
+  debug('SOCKET WOOO', socket);
 });
 
 
