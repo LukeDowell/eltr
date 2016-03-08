@@ -4,7 +4,7 @@
 
 angular.module('eltr')
     .factory('IO', [function() {
-        var socket = io.connect('http://localhost');
+        var socket = io.connect();
 
 
         return socket;
