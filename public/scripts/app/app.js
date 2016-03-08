@@ -4,17 +4,33 @@
 'use strict';
 
 angular.module('eltr', ['ngAria', 'ui.router', 'ngMessages', 'ngMaterial'])
-    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/');
+    .config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider',
+        function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
-        $stateProvider
-            .state('site', {
-                'abstract': true,
-                'views': {
-                    'navbar@': {
-                        templateUrl: 'scripts/components/navbar/navbar.html',
-                        controller: 'NavbarController'
+            /////////////
+            // ROUTING //
+            /////////////
+
+            $urlRouterProvider.otherwise('/');
+            $stateProvider
+                .state('site', {
+                    'abstract': true,
+                    'views': {
+                        'navbar@': {
+                            templateUrl: 'scripts/components/navbar/navbar.html',
+                            controller: 'NavbarController'
+                        }
                     }
-                }
-            });
+                });
+
+            /////////////
+            // THEMING //
+            /////////////
+
+            $mdThemingProvider.theme('default')
+                .primaryPalette('grey', {
+                    'default': '900'
+                })
+                .accentPalette('red')
+                .dark();
     }]);

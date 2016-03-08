@@ -13,7 +13,7 @@
 </head>
 <body>
     <div ui-view="navbar"></div>
-    <div class="text-center" ui-view="content"></div>
+    <div ui-view="content"></div>
 
     <!--vendors-->
     <!-- Socket IO is downloaded from the /socket.io endpoint-->
@@ -30,6 +30,8 @@
     <script src="scripts/app/app.js"></script>
     <script src="scripts/components/socket/socket.service.js"></script>
     <script src="scripts/components/navbar/navbar.controller.js"></script>
+    <script src="scripts/app/race/race.js"></script>
+    <script src="scripts/app/race/race.controller.js"></script>
     <script src="scripts/app/main/main.js"></script>
     <script src="scripts/app/main/main.controller.js"></script>
     <!--endinject-->

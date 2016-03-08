@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('ELTR:server');
 var http = require('http');
-var ConnectionHandler = require('../socket/connection-handler');
+var SocketHandler = require('../socket/socket-handler');
 
 /**
  * Get port from environment and store in Express.
@@ -26,9 +26,8 @@ var server = http.createServer(app);
  * Set up Socket.io
  */
 
-
 var io = require('socket.io')(server);
-new ConnectionHandler(io);
+new SocketHandler(io);
 
 /**
  * Listen on provided port, on all network interfaces.

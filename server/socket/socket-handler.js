@@ -3,10 +3,11 @@
 /**
  * Creates a socket.io connection handler. Takes the IO
  * api as a parameter
+ *
  * @param io
  * @constructor
  */
-var ConnectionHandler = function(io) {
+var SocketHandler = function(io) {
 
     /**
      * SocketIO API
@@ -15,7 +16,7 @@ var ConnectionHandler = function(io) {
 
     this.init();
 };
-var proto = ConnectionHandler.prototype;
+var proto = SocketHandler.prototype;
 
 /**
  * Setup
@@ -34,4 +35,4 @@ proto.onConnect = function(socket) {
 };
 
 
-module.exports = ConnectionHandler;
+module.exports = SocketHandler;
