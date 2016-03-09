@@ -2,6 +2,18 @@ section {
     margin-top: 5em;
 }
 
+body {
+    background: url('../media/images/paper2.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+md-whiteframe {
+    background-color: white;
+}
+
 /* ----------------------
     FONT-FAMILY YO
  ----------------------*/
