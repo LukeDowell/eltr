@@ -1,41 +1,45 @@
 /**
  * Created by ldowell on 3/9/16.
  */
-angular.module('eltr')
-    .factory('Race', ['IO', function(IO) {
-        var instance = null;
+(function() {
+    'use strict';
 
-        /**
-         *
-         * @constructor
-         */
-        var Race = function() {
+    angular.module('eltr')
+        .factory('Race', ['IO', function(IO) {
+            var instance = null;
 
             /**
              *
-             * @type {Array}
+             * @constructor
              */
-            this.participants = [];
+            var Race = function() {
 
-            /**
-             *
-             * @type {undefined}
-             */
-            this.subject = undefined;
+                /**
+                 *
+                 * @type {Array}
+                 */
+                this.participants = [];
 
-          this.init();
-        };
-        var proto = Race.prototype;
+                /**
+                 *
+                 * @type {undefined}
+                 */
+                this.subject = undefined;
 
-        proto.init = function() {
+                this.init();
+            };
+            var proto = Race.prototype;
 
-        };
+            proto.init = function() {
 
-        function getInstance() {
-            if(instance === null) {
-                instance = new Race();
+            };
+
+            function getInstance() {
+                if(instance === null) {
+                    instance = new Race();
+                }
+                return instance;
             }
-            return instance;
-        }
-        return getInstance();
-    }]);
+            return getInstance();
+        }]);
+})();

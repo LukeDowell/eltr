@@ -9,8 +9,7 @@ var angularFilesort = require('gulp-angular-filesort');
 var paths = {
     index: './public/index.html',
     styles: [
-        './public/stylesheets/**/*.css',
-        './public/bower_components/angular-material/angular-material.css'],
+        './public/stylesheets/**/*.css'],
     scripts: [
         './public/scripts/app/**/*.js',
         './public/scripts/components/**/*.js',

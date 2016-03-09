@@ -3,11 +3,36 @@ section {
 }
 
 /* ----------------------
+    FONT-FAMILY YO
+ ----------------------*/
+
+@font-face {
+    font-family: Miama;
+    src: url('../media/fonts/miama/Miama.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: BlackOlives;
+    src: url('../media/fonts/black-olives/blackolives.ttf') format('truetype')
+}
+
+/* ----------------------
     MAIN/LANDING PAGE
  ----------------------*/
 
 .view-main {
 
+}
+
+.view-main md-whiteframe {
+    width: 50em;
+}
+
+.header {
+    font-family: Miama, Arial, sans-serif;
+    font-size: 10em;
+    text-align: center;
+    padding-top: -10em;
 }
 
 /* ----------------------
@@ -26,16 +51,27 @@ section {
        OTHER SHIT
  ----------------------*/
 
+ /*TODO damn look at all this repetition son */
+
 .race-subject {
     padding: 1em;
-    display: flex;
 }
 
 .race-subject textarea {
     resize: none;
     border: none;
     outline: none;
-    box-sizing: border-box;
     min-width: 50em;
+    min-height: 10em;
     height: auto;
+}
+
+.race-input {
+    padding: 1em;
+}
+
+.race-input input {
+    min-width: 50em;
+    outline: none;
+    border: none;
 }
