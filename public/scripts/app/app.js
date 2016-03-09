@@ -8,7 +8,7 @@
 (function() {
     'use strict';
 
-    angular.module('eltr', ['ngAria', 'ui.router', 'ngMessages', 'ngMaterial'])
+    angular.module('eltr', ['ngAria', 'ui.router', 'ngMessages', 'ngMaterial', 'ngAnimate'])
         .config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider',
             function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 

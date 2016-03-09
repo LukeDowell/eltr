@@ -15,7 +15,9 @@ var Race = function() {
     this.id = undefined;
 
     /**
-     * The players participating in this race
+     * The players participating in this race. The original creator,
+     * or 'owner', of this race is always at index 0.
+     *
      * @type {Array}
      */
     this.participants = [];

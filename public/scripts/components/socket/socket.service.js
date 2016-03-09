@@ -25,7 +25,17 @@
                 /**
                  *
                  */
-                CREATE_RACE: 'createrace'
+                CREATE_RACE: 'createrace',
+
+                /**
+                 *
+                 */
+                START_RACE: 'startrace',
+
+                /**
+                 *
+                 */
+                RACE_UPDATE: 'raceupdate'
             };
 
             return socket;
