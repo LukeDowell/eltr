@@ -5,8 +5,8 @@
     'use strict';
 
     angular.module('eltr')
-        .factory('IO', [function() {
-            var socket = io.connect();
+        .factory('socket', [function() {
+            var socket = window.io.connect();
 
 
             return socket;

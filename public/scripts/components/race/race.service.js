@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('eltr')
-        .factory('Race', ['IO', function(IO) {
+        .factory('Race', ['socket', function(socket) {
             var instance = null;
 
             /**
@@ -31,7 +31,12 @@
             var proto = Race.prototype;
 
             proto.init = function() {
+                this.setupHandlers();
+            };
 
+            proto.setupHandlers = function() {
+
+                return this;
             };
 
             function getInstance() {

@@ -3,7 +3,7 @@ section {
 }
 
 body {
-    background: url('../media/images/paper2.jpg') no-repeat center center fixed;
+    background: url('../media/images/floral-background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -40,11 +40,17 @@ md-whiteframe {
     width: 50em;
 }
 
-.header {
+.view-main h1 {
+    margin-top: -40px;
     font-family: Miama, Arial, sans-serif;
-    font-size: 10em;
+    font-size: 12em;
     text-align: center;
-    padding-top: -10em;
+    text-shadow:
+            4px 4px 0 #FFF,
+            -2px -2px 0 #FFF,
+            2px -2px 0 #FFF,
+            -2px 2px 0 #FFF,
+            2px 2px 0 #FFF;
 }
 
 /* ----------------------

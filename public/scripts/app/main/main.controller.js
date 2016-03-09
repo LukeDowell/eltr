@@ -3,7 +3,7 @@
  */
 (function() {
     angular.module('eltr')
-        .controller('MainController', ['$scope', 'IO', function($scope, IO) {
-            console.log(IO);
+        .controller('MainController', ['$scope', 'socket', function($scope, socket) {
+
         }]);
 })();
