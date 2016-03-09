@@ -1,66 +1,72 @@
 'use strict';
 
 var Events = require('./socket-events');
+var RaceService = require('../service/RaceService');
 
 /**
  * Creates a socket.io connection handler. Takes the IO
  * api as a parameter
  *
- * @param io
+ * @param socket
  * @constructor
  */
-var SocketHandler = function(io) {
+var SocketHandler = function(socket) {
 
     /**
-     * SocketIO API
+     * The socket this handler is attached to
      */
-    this.io = io;
+    this.socket = socket;
 
     this.init();
 };
-var proto = SocketHandler.prototype;
 
-/**
- * Setup
- */
-proto.init = function() {
-    this.io.on('connection', this.onConnect);
-    this.io.on(Events.CREATE_RACE, this.onCreateRace);
-    this.io.on(Events.JOIN_RACE, this.onJoinRace);
-    this.io.on(Events.LEAVE_RACE, this.onLeaveRace);
-};
+SocketHandler.prototype = {
 
-/**
- *
- * @param socket
- */
-proto.onLeaveRace = function(socket) {
-    console.log("LEAVING RACE " , socket.id);
-};
+    /**
+     *
+     */
+    init: function() {
+        this.socket.on('connection', this.onConnect);
+        this.socket.on(Events.CREATE_RACE, this.onCreateRace);
+        this.socket.on(Events.JOIN_RACE, this.onJoinRace);
+        this.socket.on(Events.LEAVE_RACE, this.onLeaveRace);
 
-/**
- *
- * @param socket
- */
-proto.onJoinRace = function(socket) {
-    console.log("JOINING RACE " , socket.id);
-};
+        console.log("Socket Handler Initialized for socket: " + this.socket.id);
+    },
 
-/**
- *
- * @param socket
- */
-proto.onCreateRace = function(socket) {
-    console.log("CREATING RACE " , socket.id);
-};
+    /**
+     *
+     * @param socket
+     */
+    onConnect: function(data) {
 
-/**
- * SocketIO entry point (minus setup code in bin/www)
- *
- * @param socket
- */
-proto.onConnect = function(socket) {
-    console.log('Socket Connected!', socket.id);
+    },
+
+    /**
+     *
+     * @param socket
+     */
+    onLeaveRace: function(data) {
+
+    },
+
+    /**
+     *
+     * @param socket
+     */
+    onJoinRace: function(data) {
+
+    },
+
+    /**
+     *
+     * @param socket
+     */
+    onCreateRace: function(data, callback) {
+        RaceService.createRace(this.socket, data);
+        callback("ALL GOOD");
+    }
+
 };
 
 

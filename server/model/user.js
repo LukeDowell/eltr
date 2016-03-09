@@ -10,6 +10,9 @@
 var User = function() {
 
 };
-var proto = User.prototype;
+
+User.prototype = {
+
+};
 
 module.exports = User;

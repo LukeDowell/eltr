@@ -28,15 +28,32 @@
 
                 this.init();
             };
-            var proto = Race.prototype;
 
-            proto.init = function() {
-                this.setupHandlers();
-            };
+            Race.prototype = {
 
-            proto.setupHandlers = function() {
+                /**
+                 *
+                 */
+                init: function() {
+                    this.setupHandlers();
+                },
 
-                return this;
+                /**
+                 *
+                 * @returns {Race}
+                 */
+                setupHandlers: function() {
+                    return this;
+                },
+
+                /**
+                 *
+                 */
+                createRace: function(callback) {
+                    socket.emit(socket.EVENTS.CREATE_RACE, "HELO", callback);
+                }
+
+
             };
 
             function getInstance() {

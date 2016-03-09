@@ -18,7 +18,7 @@ var Race = function() {
      * The players participating in this race
      * @type {Array}
      */
-    this.players = [];
+    this.participants = [];
 
     /**
      * This race's subject, or quote
@@ -26,6 +26,8 @@ var Race = function() {
      */
     this.subject = undefined;
 };
-var proto = Race.prototype;
+Race.prototype = {
+
+};
 
 module.exports = Race;
