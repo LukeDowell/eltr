@@ -5,7 +5,7 @@ angular.module('eltr')
         $stateProvider
             .state('race', {
                 parent: 'site',
-                url: '/',
+                url: '/race',
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/race/race.html',

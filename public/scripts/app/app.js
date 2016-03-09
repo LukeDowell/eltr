@@ -1,5 +1,9 @@
 /**
  * Created by ldowell on 3/7/16.
+ *
+ * THEMING RELATED URLS
+ * Color Palette:  www.google.com/design/spec/color.html#color-color-palette
+ * Angular Material: material.angularjs.org/latest/Theming/01_introduction
  */
 'use strict';
 
@@ -29,8 +33,10 @@ angular.module('eltr', ['ngAria', 'ui.router', 'ngMessages', 'ngMaterial'])
 
             $mdThemingProvider.theme('default')
                 .primaryPalette('grey', {
-                    'default': '900'
+                    'default': '900',
+                    'hue-1': '400'
                 })
-                .accentPalette('red')
-                .dark();
+                .accentPalette('red', {
+                    'default': '600'
+                });
     }]);

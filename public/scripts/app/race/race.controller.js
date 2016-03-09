@@ -6,10 +6,4 @@
 angular.module('eltr')
     .controller('RaceController', ['$scope', function($scope) {
 
-        /**
-         * A list of all the participants in this race
-         * @type {Array}
-         */
-        $scope.participants = [];
-
     }]);

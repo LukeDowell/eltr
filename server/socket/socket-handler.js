@@ -1,5 +1,7 @@
 'use strict';
 
+var Events = require('./socket-events');
+
 /**
  * Creates a socket.io connection handler. Takes the IO
  * api as a parameter
@@ -23,6 +25,33 @@ var proto = SocketHandler.prototype;
  */
 proto.init = function() {
     this.io.on('connection', this.onConnect);
+    this.io.on(Events.CREATE_RACE, this.onCreateRace);
+    this.io.on(Events.JOIN_RACE, this.onJoinRace);
+    this.io.on(Events.LEAVE_RACE, this.onLeaveRace);
+};
+
+/**
+ *
+ * @param socket
+ */
+proto.onLeaveRace = function(socket) {
+    console.log("LEAVING RACE " , socket.id);
+};
+
+/**
+ *
+ * @param socket
+ */
+proto.onJoinRace = function(socket) {
+    console.log("JOINING RACE " , socket.id);
+};
+
+/**
+ *
+ * @param socket
+ */
+proto.onCreateRace = function(socket) {
+    console.log("CREATING RACE " , socket.id);
 };
 
 /**
