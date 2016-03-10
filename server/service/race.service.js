@@ -50,7 +50,7 @@ RaceService.prototype = {
         race.participants.push(socket.id); // TODO Change to user reference
         socket.join(race.id); // Join a room with the same id as the race, which is a random uuid
 
-        io.to(race.id).emit(Events.CREATE_RACE, race);
+        io.to(race.id).emit(Events.CREATE_RACE, {});
     }
 };
 

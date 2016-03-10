@@ -50,15 +50,6 @@
                  *
                  */
                 init: function() {
-                    this.setupHandlers();
-                },
-
-                /**
-                 *
-                 * @returns {Race}
-                 */
-                setupHandlers: function() {
-                    return this;
                 },
 
                 /**
