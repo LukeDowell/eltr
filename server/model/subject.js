@@ -3,6 +3,7 @@
  */
 
 var mongoose = require('mongoose');
+var mongooseRandom = require('mongoose-simple-random');
 
 var SubjectSchema = new mongoose.Schema({
 
@@ -17,26 +18,7 @@ var SubjectSchema = new mongoose.Schema({
      */
     origin: String
 });
-
-///////////////
-// STATICS ////
-///////////////
-
-/**
- * counts number of documents in the collection and then returns one document after skipping a random amount
- *
- * GIST : https://gist.github.com/3453567
- * @param callback
- */
-SubjectSchema.statics.random = function(callback) {
-    this.count(function(err, count) {
-        if (err) {
-            return callback(err);
-        }
-        var rand = Math.floor(Math.random() * count);
-        this.findOne().skip(rand).exec(callback);
-    }.bind(this));
-};
+SubjectSchema.plugin(mongooseRandom);
 
 var Subject = mongoose.model('Subject', SubjectSchema);
 

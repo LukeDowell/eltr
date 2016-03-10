@@ -74,7 +74,7 @@ SocketHandler.prototype = {
     onCreateRace: function(data, callback) {
         console.log('onCreateRace - ' , this.socket.id);
         try {
-            RaceService.createRace(this.socket, function(err, race) {
+            RaceService.createRace(this.socket, function(race) {
                 this.socket.join(race.id);
 
                 this.io.sockets.in(race.id).emit(Events.CREATE_RACE, race);

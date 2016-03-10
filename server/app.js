@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+var race = require('./route/race');
+
 var express = require('express');
 var app = express();
 
@@ -26,6 +28,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
+
+// ROUTES
+app.use('/race', race);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

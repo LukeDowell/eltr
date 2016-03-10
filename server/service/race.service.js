@@ -60,9 +60,22 @@ RaceService.prototype = {
             'place': 1 // Whatever place this participant got in the race, if finished
         });
 
-        Subject.random(function(randomSubject) {
-            race.subject = randomSubject;
-            callback(null, race); //TODO err
+        Subject.findOneRandom(function(err, subject) {
+            if(err) {
+                console.log('shit ', err);
+            }
+
+            if(subject) {
+                race.subject = subject;
+
+            } else {
+                race.subject = {
+                    content: 'Error fetching subject, please reload the page.',
+                    origin: 'Poor programming'
+                }
+            }
+
+            callback(race);
         });
     }
 };

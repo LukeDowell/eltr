@@ -41,6 +41,7 @@ md-whiteframe {
     font-family: Miama, Arial, sans-serif;
     font-size: 12em;
     text-align: center;
+    color: darkred;
     text-shadow:
             4px 4px 0 #FFF,
             -2px -2px 0 #FFF,
@@ -78,9 +79,11 @@ md-whiteframe {
     min-width: 50em;
     min-height: 10em;
     height: auto;
+    line-height:2em;
 }
 
 .race-input {
+    margin-top: 2em;
     padding: 1em;
 }
 

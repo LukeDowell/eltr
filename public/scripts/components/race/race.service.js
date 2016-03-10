@@ -60,7 +60,6 @@
                     socket.emit(socket.EVENTS.CREATE_RACE, "HELO", callback);
                 },
 
-
                 ///////////////////
                 // RECEIVE EVENTS
                 ///////////////////
@@ -70,6 +69,7 @@
                  * @param raceData
                  */
                 onRaceCreated: function(raceData) {
+                    console.log("RACE CREATED " , raceData);
                     this.subject = raceData.subject;
                     this.participants = raceData.participants;
                 }
