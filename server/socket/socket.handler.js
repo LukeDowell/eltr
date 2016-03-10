@@ -10,12 +10,17 @@ var RaceService = require('../service/race.service');
  * @param socket
  * @constructor
  */
-var SocketHandler = function(socket) {
+var SocketHandler = function(socket, io) {
 
     /**
      * The socket this handler is attached to
      */
     this.socket = socket;
+
+    /**
+     * Reference to io, I feel like I shouldn't have to do this
+     */
+    this.io = io;
 
     this.init();
 };
@@ -69,8 +74,13 @@ SocketHandler.prototype = {
     onCreateRace: function(data, callback) {
         console.log('onCreateRace - ' , this.socket.id);
         try {
-            RaceService.createRace(this.socket, data);
+            RaceService.createRace(this.socket, function(err, race) {
+                this.socket.join(race.id);
+
+                this.io.sockets.in(race.id).emit(Events.CREATE_RACE, race);
+            }.bind(this));
         } catch(e) {
+            console.log(e);
             callback(e);
         }
         callback('success');

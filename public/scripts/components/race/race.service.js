@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('eltr')
-        .factory('Race', ['socket', function(socket) {
+        .factory('Race', ['$rootScope', 'socket', function($rootScope, socket) {
             var instance = null;
 
             /**
@@ -50,6 +50,7 @@
                  *
                  */
                 init: function() {
+                    socket.on(socket.EVENTS.CREATE_RACE, this.onRaceCreated.bind(this));
                 },
 
                 /**
@@ -57,6 +58,20 @@
                  */
                 createRace: function(callback) {
                     socket.emit(socket.EVENTS.CREATE_RACE, "HELO", callback);
+                },
+
+
+                ///////////////////
+                // RECEIVE EVENTS
+                ///////////////////
+
+                /**
+                 *
+                 * @param raceData
+                 */
+                onRaceCreated: function(raceData) {
+                    this.subject = raceData.subject;
+                    this.participants = raceData.participants;
                 }
 
 

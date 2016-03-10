@@ -3,7 +3,7 @@
  */
 (function() {
     angular.module('eltr')
-        .controller('MainController', ['$scope', '$state', 'Race', function($scope, $state, Race) {
+        .controller('MainController', ['$scope', '$state', 'Race', 'socket', function($scope, $state, Race, socket) {
 
             /**
              * Simple object that has a user-selected 'name' property
@@ -20,6 +20,8 @@
                     $state.go('race');
                 });
             };
+
+
 
         }]);
 })();

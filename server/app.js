@@ -13,6 +13,7 @@ var app = express();
 // Connect to our db
 try {
     mongoose.connect('mongodb://localhost/eltr');
+    console.log("Mongoose connection established!");
 } catch (err) {
     console.log('Mongoose DB Connection FAILED : ' , err);
     // TODO Probably just dip out at this point
@@ -50,8 +51,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   debug(err);
 });
-
-
-
 
 module.exports = app;

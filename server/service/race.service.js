@@ -35,22 +35,35 @@ RaceService.prototype = {
     },
 
     /**
-     * Creates a race with the provided socket being its owner
+     * Creates a race with the provided socket being its owner.
      *
      * @param socket
      *      The socket that will 'own' this race. Ownership means practically
      *      nothing, as if the owner leaves and others are still in the race
      *      it will continue to run.
+     *
+     * @param callback
+     *      Function callback, receives an 'err' and a  'race' parameter representing the built race
+     *      object
+     * @return a Race object
      */
-    createRace: function(socket) {
+    createRace: function(socket, callback) {
         console.log("Creating Race - Owner : " , socket.id);
 
         var race = new Race();
-        race.subject = Subject.random();
-        race.participants.push(socket.id); // TODO Change to user reference
-        socket.join(race.id); // Join a room with the same id as the race, which is a random uuid
+        //race.participants.push(socket.id); // TODO Change to user reference
+        race.participants.push({
+            // Example Participant
+            'name': 'Sweet JP asdfasdf',
+            'wpm': 200, // Words per minute
+            'percentComplete': 75, // The last known percentage of completion
+            'place': 1 // Whatever place this participant got in the race, if finished
+        });
 
-        io.to(race.id).emit(Events.CREATE_RACE, {});
+        Subject.random(function(randomSubject) {
+            race.subject = randomSubject;
+            callback(null, race); //TODO err
+        });
     }
 };
 

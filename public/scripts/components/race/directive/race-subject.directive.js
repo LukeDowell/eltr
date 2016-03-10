@@ -5,18 +5,28 @@
     'use strict';
 
     angular.module('eltr')
-        .directive('raceSubject', ['Race', 'socket', function(Race, socket) {
+        .directive('raceSubject', ['$interval', 'Race', function($interval, Race) {
             'use strict';
 
             return {
                 restrict: "EA",
                 replace: "true",
-                scope: {},
+                scope: {
+                },
                 templateUrl: 'scripts/components/race/directive/race-subject.html',
                 link: function(scope, element, attributes) {
-                    console.log("RACE SUBJECT" , scope, element, attributes);
 
-                    socket.on(socket.EVENTS.RA)
+                    var intervalTask = $interval(function() {
+                        scope.subject = Race.subject;
+                    }, 500);
+
+                    scope.$on('$destroy', function() {
+                        // Clean up
+                        $interval.cancel(intervalTask);
+                        intervalTask = undefined;
+
+                        console.log("Cleanup complete")
+                    });
                 }
             }
         }]);
