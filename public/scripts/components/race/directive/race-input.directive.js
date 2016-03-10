@@ -14,6 +14,11 @@
                 templateUrl: '/scripts/components/race/directive/race-input.html',
                 link: function(scope, element, attributes) {
                     console.log("RACE INPUT " , scope, element, attributes);
+
+                    // Register keydown event listener
+                    element.find('input').on('keydown', function($event) {
+                        console.log('KEYDOWN ' , $event);
+                    });
                 }
             }
         }]);

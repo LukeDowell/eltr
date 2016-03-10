@@ -2,6 +2,8 @@
  * Created by ldowell on 3/8/16.
  */
 
+var uuid = require('node-uuid');
+
 /**
  * A representation of a single race event
  * @constructor
@@ -9,7 +11,7 @@
 var Race = function() {
 
     /**
-     * This race's id
+     * This race's id. Also
      * @type {undefined}
      */
     this.id = undefined;
@@ -23,13 +25,21 @@ var Race = function() {
     this.participants = [];
 
     /**
-     * This race's subject, or quote
-     * @type {undefined}
+     * This race's subject.
+     * @type {Subject}
      */
     this.subject = undefined;
+
+    this.init();
 };
 Race.prototype = {
 
+    init: function() {
+        /**
+         * Generates a random uuid
+         */
+        this.id = uuid.v4();
+    }
 };
 
 module.exports = Race;

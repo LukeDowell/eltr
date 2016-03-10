@@ -2,6 +2,11 @@
  * Created by ldowell on 3/9/16.
  */
 'use strict';
+var Race = require('../model/race');
+var Subject = require('../model/subject');
+
+var io = require('socket.io');
+var Events = require('../socket/socket-events');
 
 var instance = null;
 
@@ -38,8 +43,14 @@ RaceService.prototype = {
      *      it will continue to run.
      */
     createRace: function(socket) {
+        console.log("Creating Race - Owner : " , socket.id);
 
+        var race = new Race();
+        race.subject = Subject.random();
+        race.participants.push(socket.id); // TODO Change to user reference
+        socket.join(race.id); // Join a room with the same id as the race, which is a random uuid
 
+        io.to(race.id).emit(Events.CREATE_RACE, race);
     }
 };
 

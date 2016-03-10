@@ -4,9 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var express = require('express');
 var app = express();
+
+
+// Connect to our db
+try {
+    mongoose.connect('mongodb://localhost/eltr');
+} catch (err) {
+    console.log('Mongoose DB Connection FAILED : ' , err);
+    // TODO Probably just dip out at this point
+}
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

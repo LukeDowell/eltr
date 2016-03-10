@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('eltr')
-        .directive('raceSubject', ['Race', function(Race) {
+        .directive('raceSubject', ['Race', 'socket', function(Race, socket) {
             'use strict';
 
             return {
@@ -15,6 +15,8 @@
                 templateUrl: 'scripts/components/race/directive/race-subject.html',
                 link: function(scope, element, attributes) {
                     console.log("RACE SUBJECT" , scope, element, attributes);
+
+                    socket.on(socket.EVENTS.RA)
                 }
             }
         }]);
