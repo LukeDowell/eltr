@@ -8,6 +8,7 @@ body {
 
 md-whiteframe {
     background-color: white;
+    display: block;
 }
 
 /* ----------------------

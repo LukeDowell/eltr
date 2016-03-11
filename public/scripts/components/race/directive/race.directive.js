@@ -36,21 +36,60 @@
                      * @type {Array}
                      */
                     var contentWords;
+
+                    /**
+                     * Gets the next expected character. Returns null
+                     * if the word has been completed
+                     * @returns {*}
+                     */
+                    function getExpectedCharacter() {
+                        var currentWord = contentWords[currentWordIndex];
+                        var currentInput = raceInput.val();
+
+                        for(var i = 0; i < currentWord.length; i++ ) {
+                            if(currentInput.charAt(i) != currentWord.charAt(i)) {
+                                return currentWord.charAt(i);
+                            }
+                        }
+                        return null;
+                    }
+
+                    // Grab our needed data
                     Race.subject()
                         .then(function(subject) {
+
+                            //todo sometimes this is null, why?
                             subjectTextArea.val(subject.content);
+
+                            // The space character is used as a delimiter and is included in the returned array
                             contentWords = subject.content.split(/(\s+)/)
                         });
 
 
+
+
                     raceInput.on('keydown', function($event) {
-                        if(Race.isActive) {
+                        var isShiftPressed = $event.shiftKey; // String.fromCharCode doesn't care about capitalization
+                        var newCharacter = String.fromCharCode($event.which);
 
-                            // Grab the current word
-                            // Calculate how far into the word we are, or what the next expected character is
+                        var expectedCharacter = getExpectedCharacter();
+                        if(expectedCharacter) {
 
-                            console.log($event);
+                            if(newCharacter == expectedCharacter) {
+                                // Progress in the race
+                                console.log("WOOP");
+                            } else {
+                                // ERROR
+                                console.log("ERROR");
+                            }
+                        } else {
+                            // Word is complete
+
+                            currentWordIndex++;
+                            raceInput.val('');
                         }
+
+
                     });
                 }
             }
