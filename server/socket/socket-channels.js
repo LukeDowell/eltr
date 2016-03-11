@@ -2,10 +2,10 @@
  * Created by ldowell on 3/9/16.
  */
 //TODO Documentation
-var Events = {
+var Channels = {
 
     /**
-     *
+     * When received server side,
      */
     JOIN_RACE: 'joinrace',
 
@@ -30,11 +30,14 @@ var Events = {
     START_RACE: 'startrace',
 
     /**
-     * When received, contains data regarding the current race. Examples are
+     * When received server side, indicates the client would like to update their current
+     * race information.
+     *
+     * When received client side, contains data regarding the current race. Examples are
      * participant progress, words per minute, and whether or not they have
      * completed the race.
      */
     RACE_UPDATE: 'raceupdate'
 };
 
-module.exports = Events;
+module.exports = Channels;

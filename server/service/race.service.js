@@ -4,34 +4,19 @@
 'use strict';
 var Race = require('../model/race');
 var Subject = require('../model/subject');
-
+var Channels = require('../socket/socket-channels');
+var UserService = require('./user.service');
 var io = require('socket.io');
-var Events = require('../socket/socket-events');
 
-var instance = null;
 
-/**
- *
- * @constructor
- */
-var RaceService = function() {
+// All the races that are currently running
+var _activeRaces = {};
 
-    /**
-     * An array of all currently active races
-     * @type {Array}
-     */
-    this.activeRaces = [];
 
-    this.init();
-};
+module.exports = {
 
-RaceService.prototype = {
-
-    /**
-     *
-     */
-    init: function() {
-
+    getRaceById: function(id) {
+        return _activeRaces[id];
     },
 
     /**
@@ -51,18 +36,18 @@ RaceService.prototype = {
         console.log("Creating Race - Owner : " , socket.id);
 
         var race = new Race();
-        //race.participants.push(socket.id); // TODO Change to user reference
-        race.participants.push({
-            // Example Participant
-            'name': 'Sweet JP asdfasdf',
-            'wpm': 200, // Words per minute
-            'percentComplete': 75, // The last known percentage of completion
-            'place': 1 // Whatever place this participant got in the race, if finished
-        });
 
-        Subject.findOneRandom(function(err, subject) {
+        // Find the owner socket's user object and add to the race
+        var ownerUser = UserService.getUserBySocket(socket);
+        race.participants.push(ownerUser);
+
+        // Grab a random subject from db
+        Subject.findOneRandom(finalizeRace);
+
+        function finalizeRace(err, subject) {
             if(err) {
                 console.log('shit ', err);
+                // TODO
             }
 
             if(subject) {
@@ -75,19 +60,10 @@ RaceService.prototype = {
                 }
             }
 
+            // Add to active races dictionary
+            _activeRaces[race.id] = race;
+
             callback(race);
-        });
+        }
     }
 };
-
-/**
- * Singleton
- * @returns {*}
- */
-function getInstance() {
-    if(instance === null) {
-        instance = new RaceService();
-    }
-    return instance;
-}
-module.exports = getInstance();

@@ -35,14 +35,21 @@
                      *
                      * @type {Array}
                      */
-                    var contentWords = Race.subject.content.split(/(\s+)/); // TODO Clean up trailing and leading whitespace
-                    console.log(contentWords);
+                    var contentWords;
+                    Race.subject()
+                        .then(function(subject) {
+                            contentWords = subject.content.split(/(\s+)/)
+                        });
 
-                    subjectTextArea.val(Race.subject.content);
+                    subjectTextArea.val(Race.subject().content);
 
                     raceInput.on('keydown', function($event) {
                         if(Race.isActive) {
 
+                            // Grab the current word
+                            // Calculate how far into the word we are, or what the next expected character is
+
+                            console.log($event);
                         }
                     });
                 }

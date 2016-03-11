@@ -1,6 +1,6 @@
 'use strict';
 
-var Events = require('./socket-events');
+var Channels = require('./socket-channels');
 var RaceService = require('../service/race.service');
 
 /**
@@ -33,11 +33,16 @@ SocketHandler.prototype = {
     init: function() {
         this.socket.on('connection', this.onConnect.bind(this));
         this.socket.on('error', this.onError.bind(this));
-        this.socket.on(Events.CREATE_RACE, this.onCreateRace.bind(this));
-        this.socket.on(Events.JOIN_RACE, this.onJoinRace.bind(this));
-        this.socket.on(Events.LEAVE_RACE, this.onLeaveRace.bind(this));
+        this.socket.on(Channels.CREATE_RACE, this.onCreateRace.bind(this));
+        this.socket.on(Channels.JOIN_RACE, this.onJoinRace.bind(this));
+        this.socket.on(Channels.LEAVE_RACE, this.onLeaveRace.bind(this));
+        this.socket.on(Channels.RACE_UPDATE, this.onRaceUpdate.bind(this));
 
         console.log("Socket Handler Initialized for socket: " + this.socket.id);
+    },
+
+    onRaceUpdate: function(data) {
+
     },
 
     /**
@@ -77,7 +82,7 @@ SocketHandler.prototype = {
             RaceService.createRace(this.socket, function(race) {
                 this.socket.join(race.id);
 
-                this.io.sockets.in(race.id).emit(Events.CREATE_RACE, race);
+                this.io.sockets.in(race.id).emit(Channels.CREATE_RACE, race);
             }.bind(this));
         } catch(e) {
             console.log(e);

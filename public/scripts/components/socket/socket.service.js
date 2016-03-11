@@ -9,8 +9,8 @@
             var socket = window.io.connect();
 
             // Probably shouldn't do this
-            // SEE server/socket/socket-events.js
-            socket.EVENTS = {
+            // SEE server/socket/socket-channels.js
+            socket.Channels = {
 
                 /**
                  *
