@@ -5,16 +5,22 @@
     'use strict';
 
     angular.module('eltr')
-        .directive('eltrRaceParticipants', ['$interval', 'Race', function($interval, Race) {
+        .directive('eltrRaceParticipants', ['Race', function(Race) {
 
             return {
                 restrict: "EA",
                 replace: "true",
-                scope: {
-
-                },
+                scope: {},
                 templateUrl: 'scripts/components/race/directive/race-participants.html',
-                link: function(scope, element, attributes) {
+
+                link: function($scope, element, attributes) {
+                    $scope.participants = undefined;
+
+                    Race.participants()
+                        .then(function(participants) {
+                            console.log(participants);
+                            $scope.participants = participants;
+                        });
 
 
                 }

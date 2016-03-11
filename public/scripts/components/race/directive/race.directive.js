@@ -14,8 +14,8 @@
                 scope: {
                 },
                 templateUrl: 'scripts/components/race/directive/race.html',
-                link: function(scope, element, attributes) {
-                    var subjectTextArea = element.find('textarea');
+                link: function($scope, element, attributes) {
+                    var subjectTextArea = element.find('textarea'); // TODO do these selectors need to be more specific?
                     var raceInput = element.find('input');
 
                     /**

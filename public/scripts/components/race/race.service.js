@@ -30,19 +30,12 @@
                 subject: function(force) {
                     var deferred = $q.defer();
 
-                    if(force) {
-                        _subject = undefined;
-                    }
-
                     if(angular.isDefined(_subject)) {
                         deferred.resolve(_subject);
                         return deferred.promise;
                     }
 
-                    /*
-
-                     */
-                    this.updateRaceData()
+                    this.updateRaceData(force)
                         .then(function(subject, participants) {
                             deferred.resolve(subject);
                         });
@@ -58,19 +51,12 @@
                 participants: function(force) {
                     var deferred = $q.defer();
 
-                    if(force) {
-                        _participants = undefined;
-                    }
-
                     if(angular.isDefined(_participants)) {
                         deferred.resolve(_participants);
                         return deferred.promise;
                     }
 
-                    /*
-
-                     */
-                    this.updateRaceData()
+                    this.updateRaceData(force)
                         .then(function(subject, participants) {
                             deferred.resolve(participants);
                         });
@@ -81,8 +67,18 @@
                 /**
                  *
                  */
-                updateRaceData: function() {
+                updateRaceData: function(force) {
                     var deferred = $q.defer();
+
+                    if(force) {
+                        _participants = undefined;
+                        _subject = undefined;
+                    }
+
+                    if(_participants && _subject) {
+                        deferred.resolve(_subject, _participants);
+                        return deferred.promise;
+                    }
 
                     socket.emit(Channels.RACE_UPDATE, '', function(response) {
                         if(response.err) {
