@@ -8,15 +8,40 @@ var Channels = require('../socket/socket-channels');
 var UserService = require('./user.service');
 var io = require('socket.io');
 
-
 // All the races that are currently running
 var _activeRaces = {};
-
 
 module.exports = {
 
     getRaceById: function(id) {
         return _activeRaces[id];
+    },
+
+    /**
+     * Finds a race that has a socket with the
+     * provided id
+     * @param socketId
+     */
+    getRaceBySocketId: function(socketId) {
+
+        for(var key in _activeRaces) {
+
+            // Skip if the value is from prototype
+            if(!_activeRaces.hasOwnProperty(key)) continue;
+
+            var race = _activeRaces[key];
+            for(var playerKey in race.participants) {
+
+                if(!race.participants.hasOwnProperty(playerKey)) continue;
+
+                var participant = race.participants[playerKey];
+                if(participant.id == socketId) {
+                    return race;
+                }
+            }
+        }
+
+        return null;
     },
 
     /**

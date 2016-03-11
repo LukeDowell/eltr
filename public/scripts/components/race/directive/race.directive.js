@@ -38,10 +38,10 @@
                     var contentWords;
                     Race.subject()
                         .then(function(subject) {
+                            subjectTextArea.val(subject.content);
                             contentWords = subject.content.split(/(\s+)/)
                         });
 
-                    subjectTextArea.val(Race.subject().content);
 
                     raceInput.on('keydown', function($event) {
                         if(Race.isActive) {

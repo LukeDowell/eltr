@@ -41,8 +41,26 @@ SocketHandler.prototype = {
         console.log("Socket Handler Initialized for socket: " + this.socket.id);
     },
 
-    onRaceUpdate: function(data) {
-
+    /**
+     * A request from the client to update their information about the race.
+     * Sent back via a callback
+     *
+     * TODO figure out if that is 'efficient' to do with socket.io. Should we just
+     * emit to the room and update everyone? That seems like a sideeffect
+     *
+     * @param data
+     * @param callback
+     */
+    onRaceUpdate: function(data, callback) {
+        var race = RaceService.getRaceBySocketId(this.socket.id);
+        var response = {};
+        if(race) {
+            response.participants = race.participants;
+            response.subject = race.subject;
+        } else {
+            response.err = 'A race cannot be found for the provided user!';
+        }
+        (callback || angular.noop)(response);
     },
 
     /**
@@ -96,8 +114,7 @@ SocketHandler.prototype = {
      * @param error
      */
     onError: function(error) {
-        console.log("SOCKET ERROR");
-        console.log(this.socket.id);
+        console.log("SOCKET ERROR" , this.socket.id);
         console.log(error);
     }
 

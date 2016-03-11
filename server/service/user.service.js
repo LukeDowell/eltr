@@ -14,7 +14,10 @@ module.exports = {
         var someUser = {
 
             // Example Participant
-            'name': 'Sweet JP asdfasdf',
+
+            'id': socket.id,
+
+            'name': 'Racer# - ' + socket.id,
 
             'wpm': 200, // Words per minute
 

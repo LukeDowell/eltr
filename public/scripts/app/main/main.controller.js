@@ -16,7 +16,8 @@
              */
             $scope.beginButtonClicked = function(user) {
                 Race.createRace(function(data) {
-                    console.log("CALLBACK DATA" , data);
+                    console.log("Race Created");
+                    Race.updateRaceData();
                     $state.go('race');
                 });
             };
